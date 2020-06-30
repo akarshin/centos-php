@@ -94,24 +94,8 @@ RUN export CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/L
 RUN curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - && \
     dnf install -y nodejs
 
-RUN chown -R nginx:nginx /var/lib/php/session && chmod 0777 /var/lib/php/session
-RUN mkdir -p /var/www/.config && \
-    chown -R nginx:nginx /var/www/.config
-
-ARG userid=1000
-ARG groupid=1000
-
-RUN usermod -u $userid nginx
-RUN groupmod -g $groupid nginx
-
 WORKDIR /html
 
 STOPSIGNAL SIGTERM
 
-COPY start.sh /tmp/start.sh
-COPY www.conf /etc/php-fpm.d/www.conf
 COPY php.ini /etc/php.d/01-docker.ini
-
-RUN chmod +x /tmp/start.sh
-
-CMD ["/tmp/start.sh"]

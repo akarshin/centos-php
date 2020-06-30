@@ -52,6 +52,7 @@ RUN dnf --enablerepo=PowerTools \
     php-gd \
     php-fpm \
     php-imagick \
+    php-imap \
     php-intl \
     php-mbstring \
     php-mcrypt \

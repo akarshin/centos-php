@@ -76,7 +76,7 @@ RUN curl https://phar.phpunit.de/phpunit.phar -L -o phpunit.phar && \
     chmod +x phpunit.phar && \
     mv phpunit.phar /usr/local/bin/phpunit
 
-ARG composer_hash=e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a
+ARG composer_hash=756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php -r "if (hash_file('SHA384', 'composer-setup.php') === '$composer_hash') { echo 'Installer verified'; } else { echo 'Installer corrupt. Maybe a new version was released and you forgot to update the verification hash?'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
@@ -92,7 +92,7 @@ RUN export CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/L
     chown root:root /usr/local/bin/chromedriver && \
     chmod 0755 /usr/local/bin/chromedriver
 
-RUN curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - && \
+RUN curl --silent --location https://rpm.nodesource.com/setup_14.x | bash - && \
     dnf install -y nodejs
 
 WORKDIR /html

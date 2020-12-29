@@ -10,8 +10,9 @@ RUN dnf clean all && \
 RUN dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y && \
     dnf module enable php:remi-7.4 -y
 
-RUN dnf --enablerepo=PowerTools \
-    install -y --nogpgcheck \
+RUN yum install dnf-plugins-core && \
+    yum config-manager --set-enabled powertools && \
+    yum install -y --nogpgcheck \
     epel-release \
     google-chrome-stable \
     wget \
